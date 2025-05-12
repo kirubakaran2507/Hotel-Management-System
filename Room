@@ -1,0 +1,39 @@
+package room;
+
+public class Room {
+    private final String no;
+    private final RoomType type;
+    private final double rent;
+    private RoomStatus status;
+
+    public Room(String no,RoomType type,int rent){
+        this.no = no;
+        this.type = type;
+        this.rent = rent;
+        status = RoomStatus.AVAILABLE;
+    }
+
+    public String getNo() {
+        return no;
+    }
+
+    public void reserveRoom(){
+        status = RoomStatus.BOOKED;
+    }
+
+    public void cancelRoom(){
+        status = RoomStatus.AVAILABLE;
+    }
+
+    public void checkIn(){
+        status = RoomStatus.OCCUPIED;
+    }
+
+    public double getRent() {
+        return rent;
+    }
+
+    public RoomStatus getStatus() {
+        return status;
+    }
+}
