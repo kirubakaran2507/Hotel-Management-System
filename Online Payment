@@ -1,0 +1,9 @@
+package payment;
+
+public class OnlinePayment implements Payment{
+    @Override
+    public boolean processPayment(double amount) {
+        System.out.println("Payment successful");
+        return true;
+    }
+}
