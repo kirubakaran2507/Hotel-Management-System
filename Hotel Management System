@@ -1,0 +1,17 @@
+package hotelmanagementsystem;
+
+import payment.Payment;
+import reservation.Reservation;
+import room.Room;
+
+import java.time.LocalDate;
+
+public interface HotelManagementSystem {
+    void addRoom(Room room);
+    void addGuest(Guest guest);
+    Reservation reserveRoom(Room room, Guest guest, LocalDate checkInDate, LocalDate checkoutDate);
+    void cancelReservation(String reservedId);
+    void checkIn(String reservationId);
+    void checkOut(String reservationId, Payment payment);
+    String generateId();
+}
