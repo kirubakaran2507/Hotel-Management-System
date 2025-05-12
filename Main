@@ -1,0 +1,26 @@
+package hotelmanagementsystem;
+
+import payment.CashPayment;
+import reservation.Reservation;
+import room.Room;
+import room.RoomType;
+
+import java.time.LocalDate;
+
+public class Main {
+    public static void main(String[] args) {
+        HotelManagementSystemImpl instance = HotelManagementSystemImpl.getInstance();
+
+        Room room1 = new Room(instance.generateId(), RoomType.DELUXE,5000);
+        Room room2 = new Room(instance.generateId(), RoomType.SINGLE,1500);
+
+        instance.addRoom(room1);
+        instance.addRoom(room2);
+
+        Guest guest1 = new Guest(instance.generateId());
+        Guest guest2 = new Guest(instance.generateId());
+        Reservation reservation = instance.reserveRoom(room2,guest1, LocalDate.now(),LocalDate.now().plusDays(4));
+        instance.checkIn(reservation.getId());
+        instance.checkOut(reservation.getId(), new CashPayment());
+    }
+}
