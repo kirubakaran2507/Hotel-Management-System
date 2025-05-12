@@ -1,0 +1,59 @@
+package reservation;
+
+import hotelmanagementsystem.Guest;
+import room.Room;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+public class Reservation{
+    private final String id;
+    private final Room room;
+    private final Guest guest;
+    private final LocalDate checkInDate;
+    private final LocalDate checkOutDate;
+    private ReservationStatus status;
+    private final int rent;
+
+    public Reservation(String id,Room room, Guest guest, LocalDate checkInDate,LocalDate checkOutDate){
+        this.id = id;
+        this.room = room;
+        this.guest = guest;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        status = ReservationStatus.CONFIRMED;
+        rent = calculateRent();
+    }
+
+    private int calculateRent(){
+        return (int) (room.getRent() * ChronoUnit.DAYS.between(checkInDate,checkOutDate));
+    }
+
+    public void cancel(){
+        status = ReservationStatus.CANCELLED;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public LocalDate getCheckInDate() {
+        return checkInDate;
+    }
+
+    public LocalDate getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public ReservationStatus getStatus() {
+        return status;
+    }
+
+    public int getRent() {
+        return rent;
+    }
+}
