@@ -1,0 +1,9 @@
+package payment;
+
+public class CashPayment implements Payment{
+    @Override
+    public boolean processPayment(double rent) {
+        System.out.println("Payment successful");
+        return true;
+    }
+}
